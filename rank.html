@@ -1,0 +1,76 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="View/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="View/css/hangman.css">
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+    <script src="Models/strings.js"></script>
+    <script src="Models/wordarray.js"></script>
+    <script src="Controller/controller.js"></script>
+    <script src="View/view.js"></script>
+</head>
+<div class="container">
+    <div class="row" id="maincontainer">
+        <h1 id="title"></h1><br>
+        <div class="row" id="word0">
+            <h2 class="rankhead"></h2>
+            <div id="econtainer0">
+                <div class="row">
+                    <div class="col-sm-3 rank" name="erank0"></div>
+                    <div class="col-sm-3 username" name="eusername0"></div>
+                    <div class="col-sm-3 score" name="escore0"></div>
+                    <div class="col-sm-2 time" name="etime0"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="word1">
+            <h2 class="rankhead"></h2>
+            <div id="econtainer1">
+                <div class="row">
+                    <div class="col-sm-3 rank" name="erank1"></div>
+                    <div class="col-sm-3 username" name="eusername1"></div>
+                    <div class="col-sm-3 score" name="escore1"></div>
+                    <div class="col-sm-2 time" name="etime1"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="word2">
+            <h2 class="rankhead"></h2>
+            <div id="econtainer2">
+                <div class="row">
+                    <div class="col-sm-3 rank" name="erank2"></div>
+                    <div class="col-sm-3 username" name="eusername2"></div>
+                    <div class="col-sm-3 score" name="escore2"></div>
+                    <div class="col-sm-2 time" name="etime2"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="word3">
+            <h2 class="rankhead"></h2>
+            <div id="econtainer3">
+                <div class="row">
+                    <div class="col-sm-3 rank" name="erank3"></div>
+                    <div class="col-sm-3 username" name="eusername3"></div>
+                    <div class="col-sm-3 score" name="escore3"></div>
+                    <div class="col-sm-2 time" name="etime3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="word4">
+            <h2 class="rankhead"></h2>
+            <div id="econtainer4">
+                <div class="row">
+                    <div class="col-sm-3 rank" name="erank4"></div>
+                    <div class="col-sm-3 username" name="eusername4"></div>
+                    <div class="col-sm-3 score" name="escore4"></div>
+                    <div class="col-sm-2 time" name="etime4"></div>
+                </div>
+            </div>
+        </div>
+        <a href="hangman.html" class="btn btn-primary" style="float:right" id="hangman">Back To HangMan</a>
+        <br>
+        <br>
+        <br>
+    </div>
+    <script>
+        organizeData();
+        initRankText();
+    </script>

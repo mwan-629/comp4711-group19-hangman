@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="View/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="View/css/hangman.css">
+    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
+    <script src="Models/strings.js"></script>
+    <script src="Models/wordarray.js"></script>
+    <script src="Controller/controller.js"></script>
+    <script src="Controller/hangman.js"></script>
+    <script src="View/view.js"></script>
+</head>
+
+<body>
+    <div id="gameContainer">
+        <h1 id="title"></h1>
+        <h2 id="scoretext">Current Score: <span id="score">0</span>
+        </h2>
+        <h2 id="guesstext">Number of Guesses: <span id="guesses">7</span></h2>
+        <h2 id="timertext"></h2>
+        <h2><span id="time">0</span></h2>
+        <div id="WordContainer">
+            <h1 id="word">
+        </div>
+        <h4 id="quote"></h4>
+        <button class="btn btn-info restart" onclick="init(2)"></button>
+        <div id="controlpanel">
+        </div>
+        <br>
+        <button class="btn btn-danger signout" onclick="signout()"></button>
+        <br>
+        <br>
+        <a href="rank.html" class="btn btn-warning" id="ranking"></a>
+    </div>
+</body>
+
+</html>
+<script>
+    init();
+    initHangmanText();
+</script>
