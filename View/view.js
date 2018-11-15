@@ -1,143 +1,73 @@
-
-/* initalizes/resets game */
-function init(){
-
-  var random = Math.floor((Math.random() * (length())) + 0);
-  console.log(random);
-  currentObject = getWord(random);
-  currentWord = currentObject.word;
-
-  resetWordContainer();
-  createPanel(currentWord);
-  endCounter = findPoints(currentWord);
-  console.log(endCounter);
-  createWordDef(currentObject);
-  document.getElementById("guesses").innerHTML = maxGuesses;
-  document.getElementById("score").innerHTML = 0;
+//View: Responsible for event handlers (onclick methods)
+//Display the alphabets array as buttons and assign them with id
+for (var i = 0; i < alphabets.length; i++) {
+    var buttons = document.createElement("button");
+    var labels = document.createTextNode(alphabets[i]);
+    buttons.appendChild(labels);
+    document.getElementById("alphaButtons").appendChild(buttons);
+    //Assign id to each button
+    var char = (i+10).toString(36); //THIS PART
+    buttons.id = char;
+    buttons.onclick = function() {checkGuess(this.id);}
 }
 
-/* creates panel for the game */
-function createPanel(currentWord){
-
-  let controlPanel = document.getElementById('controlpanel');
-
-
-  for (var alphastart = 0; alphastart < alphabet.length; alphastart++){
-
-    var btn = document.createElement("BUTTON");
-    btn.innerHTML = alphabet[alphastart];
-    btn.id = alphastart;
-    btn.setAttribute("onclick", "showWord(this.innerHTML);disableButton(this.id)");
-    btn.className = "btn btn-primary";
-    controlPanel.appendChild(btn);
-  }
-
+//Display the guessing word as buttons without labels
+for (i = 0; i < wordSize; i++) {
+      var inputBox = document.createElement("button");
+      inputBox.className = "btn btn-secondary"
+      inputBox.disabled = 'true';
+      inputBox.id = guessWord[i]+i;
+      storeId[i] = inputBox.id;
+      console.log(storeId[i])
+      document.getElementById("guessingWord").appendChild(inputBox);
 }
 
-/* creates guessing word */
-function createWordDef(guessWord){
+//Displays the reset button
+resetBtn.appendChild(btnText);
+document.getElementById("resetButton").appendChild(resetBtn);
+resetBtn.onclick = function() {reset();};
 
-  let str = guessWord.word;
-  let wordContainer = document.getElementById("word");
+//Displays the limit
+document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
 
-  for (var x = 0; x < str.length; x++){
-    var span = document.createElement("span");
-    span.innerHTML = str[x];
-    span.setAttribute("name", str[x]);
-    span.className = "word"
-    wordContainer.appendChild(span);
-  }
-  updateQuote(guessWord.definition);
+//Displays the user's score
+document.getElementById("points").innerHTML = defaultScore;
+
+//Displays the word's definition
+document.getElementById("guessingWordDefinition").appendChild(getDef);
+
+//Display message and confirm if user wants to play again
+function win() {
+    window.setInterval(function() {
+      modal.style.display = "block";
+      popupMsg.innerHTML = "Congratulations! You guessed the word!";
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+            reset();
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        reset();
+      }
+    },100);
 }
 
-/* Shows quote in view */
-function updateQuote(str){
-    document.getElementById("quote").innerHTML = "\"" + str + "\"";
-}
+//Display message and confirm if user wants to play again
+function lose() {
+    window.setInterval(function() {
+      modal.style.display = "block";
+      popupMsg.innerHTML = "You lost! You used up all your guess!";
 
-/* Updates Guesses in view */
-function updateScoreGuesses(bool, occurences){
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        reset();
+      }
 
-  let score = document.getElementById("score");
-  let guesses = (document.getElementById("guesses"));
-  let currentScore = parseInt(score.innerHTML);
-  let currentGuesses = parseInt(guesses.innerHTML);
-  console.log(occurences);
-  if(bool){
-    score.innerHTML = currentScore + occurences;
-    --endCounter
-  }
-  else{
-    score.innerHTML = --currentScore;
-    guesses.innerHTML = --currentGuesses;
-  }
-
-  if(currentGuesses === 0 || endCounter == 0){
-    for(var button = 0; button < alphabet.length; button++){
-      document.getElementById(button).disabled = true;
-      console.log("writing");
-      writeUserData();
-    }
-  }
-}
-
-function redirect(){
-         window.location.href = "hangman.html";
-}
-
-function notMainPage(){
-     currentPage = true;
-}
-
-function insertRank(count, username, score, time, wordnumber) {
-   let container = document.getElementById("word" + wordnumber);
-   let div = document.createElement("div");
-   div.innerHTML = document.getElementById("econtainer" + wordnumber).innerHTML
-   container.appendChild(div);
-   document.getElementsByName("erank" + wordnumber)[count].innerHTML = count;
-   document.getElementsByName("etime" + wordnumber)[count].innerHTML = time;
-   document.getElementsByName("eusername" + wordnumber)[count].innerHTML = username;
-   document.getElementsByName("escore" + wordnumber)[count].innerHTML = score;
-}
-
-function initLoginText(){
-
-     let loginelement = document.getElementsByClassName("login");
-     loginelement[0].innerHTML = login;
-     loginelement[1].innerHTML = login;
-     document.getElementById("form-heading").innerHTML = loginhead;
-     document.getElementById("loginmsg").innerHTML = loginmsg;
-     document.getElementById("signup").innerHTML = signupmsg;
-}
-
-function initSignupText(){
-     document.getElementById("signupmsg1").innerHTML = signupmsg1;
-     document.getElementById("login").innerHTML = login;
-     document.getElementsByClassName("signup")[0].innerHTML = signupmsg;
-     document.getElementsByClassName("signup")[1].innerHTML = signupmsg;
-     document.getElementById("sign-heading").innerHTML = signuphead;
-}
-
-function initHangmanText(){
-     document.getElementById("title").innerHTML = title;
-     document.getElementsByClassName("signout")[0].innerHTML = signoutmsg;
-     document.getElementsByClassName("restart")[0].innerHTML = restartmsg;
-     document.getElementById("timertext").innerHTML = timertext;
-     document.getElementById("score").innerHTML = initalscore;
-     document.getElementById("guesses").innerHTML = initalguess;
-     document.getElementById("ranking").innerHTML = rankingmsg;
-}
-
-function initRankText(){
-
-     let rowlength = document.getElementsByClassName("rank").length;
-
-     document.getElementById("title").innerHTML = ranktitle;
-     for(var row = 0; row < rowlength; row++){
-          document.getElementsByClassName("rankhead")[row].innerHTML = rankheading[row];
-          document.getElementsByClassName("rank")[row].innerHTML = ranktext;
-          document.getElementsByClassName("time")[row].innerHTML = timetext;
-          document.getElementsByClassName("username")[row].innerHTML = usernametext;
-          document.getElementsByClassName("score")[row].innerHTML = stext;
-     }
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        reset();
+      }
+    }, 100);
 }

@@ -1,41 +1,52 @@
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="View/style.css">
+    <!--Add jquery library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Add bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
 
-<head>
-    <link rel="stylesheet" type="text/css" href="View/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="View/css/hangman.css">
-    <script src="https://www.gstatic.com/firebasejs/5.5.6/firebase.js"></script>
-    <script src="Models/strings.js"></script>
-    <script src="Models/wordarray.js"></script>
-    <script src="Controller/controller.js"></script>
-    <script src="Controller/hangman.js"></script>
-    <script src="View/view.js"></script>
-</head>
+  </head>
 
-<body>
-    <div id="gameContainer">
-        <h1 id="title"></h1>
-        <h2 id="scoretext">Current Score: <span id="score">0</span>
-        </h2>
-        <h2 id="guesstext">Number of Guesses: <span id="guesses">7</span></h2>
-        <h2 id="timertext"></h2>
-        <h2><span id="time">0</span></h2>
-        <div id="WordContainer">
-            <h1 id="word">
-        </div>
-        <h4 id="quote"></h4>
-        <button class="btn btn-info restart" onclick="init(2)"></button>
-        <div id="controlpanel">
-        </div>
-        <br>
-        <button class="btn btn-danger signout" onclick="signout()"></button>
-        <br>
-        <br>
-        <a href="rank.html" class="btn btn-warning" id="ranking"></a>
+  <body>
+    <h1>Hangman Game<br>Guess the word!</h1>
+
+    <h2>Number of guesses left: </h2>
+
+    <div id="numOfGuess"></div>
+    <br>
+
+    <h2>Your score:</h2>
+
+    <div id="points"></div>
+
+    <div id="guessingWord"></div>
+    <br>
+
+    <div id="guessingWordDefinition"></div>
+    <br>
+
+    <div id="alphaButtons"></div>
+    <br>
+
+    <p>Want to reset?</p>
+    <div id="resetButton"></div>
+    <br>
+    <button id="ranking" class="btn btn-info hide" onclick="document.location.href='ranking.html';">Ranking Board</button>
+
+    <!-- The popup message -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="popup_msg"></p>
+      </div>
     </div>
-</body>
 
+    <script src="Controller/controller.js"></script>
+    <script src="Model/model.js"></script>
+    <script src="View/view.js"></script>
+  </body>
 </html>
-<script>
-    init();
-    initHangmanText();
-</script>
