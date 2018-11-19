@@ -1,19 +1,19 @@
 rankings = document.getElementById("rankingBoard");
 var db;
-//get database data as json 
+//get database data as json
 function getDataAndRank(){
- 
+
       var array = [];
 
       //push database data to array
       for (var key in db) {
-          array.push(db[key]); 
+          array.push(db[key]);
       }
 
       array.sort(function(a, b){
           return b.score - a.score;
       });
-      
+
       var rank = 1;
 
       for (var i = 0; i < array.length; i++) {
@@ -38,7 +38,6 @@ function getDataAndRank(){
             db = xhr.responseText;
             console.log(db);
             db = JSON.parse(db);
-            console.log(db.Items[0]);
             parseData(db);
 
         }
@@ -47,13 +46,23 @@ function getDataAndRank(){
     xhr.send(null);
 }
 function parseData(value) {
-    console.log(value.Items.length);
+    unsortedrank = []
     for(let i=0; i<value.Items.length; i++) {
-        var tr="<tr>";
-        var td1="<td>"+value.Items[i]["rank"]+"</td>";
-        var td2="<td>"+value.Items[i]["userid"]+"</td>";
-        var td3="<td>"+value.Items[i]["score"]+"</td><tr>";
-
-        $("#mytable").append(tr+td1+td2+td3); 
+          unsortedrank[i] = value.Items[i];
     }
+
+    unsortedrank.sort(function(a, b){
+        return a.rank - b.rank;
+    });
+
+
+    for(let i=0; i< unsortedrank.length; i++) {
+        var tr="<tr>";
+        var td1="<td>"+unsortedrank[i]["rank"]+"</td>";
+        var td2="<td>"+unsortedrank[i]["userid"]+"</td>";
+        var td3="<td>"+unsortedrank[i]["score"]+"</td><tr>";
+
+        $("#mytable").append(tr+td1+td2+td3);
+    }
+    console.log(unsortedrank)
 }
