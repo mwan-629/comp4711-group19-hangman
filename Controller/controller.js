@@ -53,8 +53,17 @@ function updateScore(defaultScore) {
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/updatescore', true);
-    xhttp.setRequestHeader("Content-Type", "application/json")
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = updateRankings();
     xhttp.send(JSON.stringify(json));
+    
+}
+
+function updateRankings() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/updaterankings', true);
+    xhttp.setRequestHeader("Content-Type", "application/json")
+    xhttp.send();
 }
 
 
