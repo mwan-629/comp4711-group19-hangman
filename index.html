@@ -6,11 +6,14 @@
     <title>Hangman Game Assignment1</title>
 
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <script src="config.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="View/style.css">
-
-   
+    <script src="aws-cognito-sdk.min.js"></script> 
+    <script src="amazon-cognito-identity.min.js"></script> 
+    <!-- optional: only if you use other AWS services -->
+    <!-- //<script src="aws-sdk-2.6.10.js"></script>  -->
   </head>
 
   <body>
@@ -50,7 +53,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+                                        <button type="submit" onclick="register_login()" class="btn btn-primary btn-lg btn-block">Login</button>
                                     </div>
                                     <div>
                                         <!-- <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button> -->
@@ -87,13 +90,14 @@
                                     <input id="register_username" class="form-control" type="text" placeholder="Username" required>
                                     <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
                                     <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                                    <h3 class="h3 mb-3 font-weight-normal" id="titleheader">Register an Account</h3>
                                 </div>
                                 <div class="modal-footer">
                                     <div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                                        <button type="submit" onclick="submit_login_btn()" class="btn btn-primary btn-lg btn-block">Register</button>
                                     </div>
                                     <div>
-                                        <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                                        <button id="register_login_btn"  type="button" class="btn btn-link">Log In</button>
                                         <!-- <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button> -->
                                     </div>
                                 </div>
@@ -108,7 +112,7 @@
             </div>
    
   </body>
-
+  <script src="Model/aws.js"></script>
   <script src="Model/ranking.js"></script>
   <script src="View/login.js"></script>
 
