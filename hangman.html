@@ -1,17 +1,24 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="View/style.css">
+    <script src="config.js"></script>
     <!--Add jquery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Add bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
             integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <script src="aws-cognito-sdk.min.js"></script> 
+            <script src="amazon-cognito-identity.min.js"></script> 
+            <!-- optional: only if you use other AWS services -->
+            <!-- //<script src="aws-sdk-2.6.10.js"></script>  -->
+    
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman Game</title>
-
   </head>
 
   <body>
+      <button id="btnLogout" class="btn btn-action" onclick="btnLogout()">Log Out</button><br>
+
     <h1>Hangman Game<br>Guess the word!</h1>
 
     <h2>Number of guesses left: </h2>
@@ -44,7 +51,7 @@
         <p id="popup_msg"></p>
       </div>
     </div>
-
+    <script src="Model/aws.js"></script>
     <script src="Controller/controller.js"></script>
     <script src="Model/model.js"></script>
     <script src="View/view.js"></script>
