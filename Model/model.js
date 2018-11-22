@@ -36,7 +36,41 @@ var resetBtn = document.createElement("button");
 var btnText = document.createTextNode("Play Again?");
 
 //If defaultScore value exists, replace default value with current value
-if (localStorage.getItem("saveScore") !== null) {
-    defaultScore = localStorage.getItem("saveScore");
+// if (localStorage.getItem("saveScore") !== null) {
+//     defaultScore = localStorage.getItem("saveScore");
+// }
+// localStorage.setItem("saveScore", defaultScore);
+
+var poolData = {
+    UserPoolId : _config.cognito.userPoolId, // Your user pool id here
+    ClientId : _config.cognito.clientId, // Your client id here
+};
+var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+var cognitoUser = userPool.getCurrentUser();
+var userInfo = {};
+function getUserInfo() {
+    let cognitoid = cognitoUser.username;
+    console.log(cognitoUser.username)
+
+    var json = {
+        "id": cognitoid,
+    };
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user/info', true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function () {
+        if (xhttp.readyState == XMLHttpRequest.DONE) {
+            userInfo = JSON.parse(xhttp.responseText);
+            console.log(userInfo.score);
+            console.log(userInfo);
+            document.getElementById("points").innerHTML = userInfo.score;
+            defaultScore = userInfo.score;
+        }
+    };
+    xhttp.send(JSON.stringify(json)); 
 }
-localStorage.setItem("saveScore", defaultScore);
+
+function setUserInfo(data) {
+    userInfo = data;
+}

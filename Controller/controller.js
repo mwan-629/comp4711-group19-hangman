@@ -47,7 +47,7 @@ function checkGuess(alphaId) {
 
 function updateScore(defaultScore) {
     var json = {
-        "token": "nABHxifXvP",
+        "token": userInfo.token,
         "score": defaultScore
     };
 
