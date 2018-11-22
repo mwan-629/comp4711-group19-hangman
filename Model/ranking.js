@@ -52,13 +52,13 @@ function parseData(value) {
     }
 
     unsortedrank.sort(function(a, b){
-        return a.rank - b.rank;
+        return a.ranknum - b.ranknum;
     });
 
 
     for(let i=0; i< unsortedrank.length; i++) {
         var tr="<tr>";
-        var td1="<td>"+unsortedrank[i]["rank"]+"</td>";
+        var td1="<td>"+unsortedrank[i]["ranknum"]+"</td>";
         var td2="<td>"+unsortedrank[i]["userid"]+"</td>";
         var td3="<td>"+unsortedrank[i]["score"]+"</td><tr>";
 
