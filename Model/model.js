@@ -36,10 +36,10 @@ var resetBtn = document.createElement("button");
 var btnText = document.createTextNode("Play Again?");
 
 //If defaultScore value exists, replace default value with current value
-if (localStorage.getItem("saveScore") !== null) {
-    defaultScore = localStorage.getItem("saveScore");
-}
-localStorage.setItem("saveScore", defaultScore);
+// if (localStorage.getItem("saveScore") !== null) {
+//     defaultScore = localStorage.getItem("saveScore");
+// }
+// localStorage.setItem("saveScore", defaultScore);
 
 var poolData = {
     UserPoolId : _config.cognito.userPoolId, // Your user pool id here
@@ -62,12 +62,13 @@ function getUserInfo() {
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
             userInfo = JSON.parse(xhttp.responseText);
+            console.log(userInfo.score);
             console.log(userInfo);
-
+            document.getElementById("points").innerHTML = userInfo.score;
+            defaultScore = userInfo.score;
         }
     };
-    xhttp.send(JSON.stringify(json));
-    
+    xhttp.send(JSON.stringify(json)); 
 }
 
 function setUserInfo(data) {
