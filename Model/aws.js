@@ -2,9 +2,9 @@ var username;
 var password;
 var email;
 var poolData;
+var identity;
 
-
-//REGISTER
+//Register Function
 function submit_login_btn() {
 		
 	name =  document.getElementById("register_username").value;	
@@ -42,7 +42,10 @@ function submit_login_btn() {
             alert(err.message || JSON.stringify(err));
             return;
         }
+
         cognitoUser = result.user;
+        console.log(result.userSub);
+        post_toDB(document.getElementById("register_username").value, result.userSub)
         //console.log('Email: ' + cognitoUser.getUsername());
         //change elements of page
         document.getElementById("titleheader").innerHTML = "Check your email for a verification link";
@@ -50,8 +53,18 @@ function submit_login_btn() {
     });
     }	
 
+    //Post to dynamoDB: userid, cognitoid
+    function post_toDB(id,cognitoid){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
+        xhttp.setRequestHeader("Content-Type", "application/json")
+        var data = {'token': cognitoid,   
+                    'userid': id,
+                    'cognitoid': cognitoid}
+        xhttp.send(JSON.stringify(data));
+    }
 
-    //LOGIN
+    //Login function
     function register_login() {
     
         var authenticationData = {
@@ -60,7 +73,7 @@ function submit_login_btn() {
         };
         
         var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
-        
+        identity = authenticationDetails;
         var poolData = {
             UserPoolId : _config.cognito.userPoolId, // Your user pool id here
             ClientId : _config.cognito.clientId, // Your client id here
@@ -74,7 +87,7 @@ function submit_login_btn() {
         };
         
         var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-        
+ 
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
                 var accessToken = result.getAccessToken().getJwtToken();
@@ -86,7 +99,7 @@ function submit_login_btn() {
             },
         });
       }
-
+      console.log(identity);
       function btnLogout(){
         var poolData = {
             UserPoolId : _config.cognito.userPoolId, // Your user pool id here
@@ -97,7 +110,6 @@ function submit_login_btn() {
         
         if (cognitoUser != null) {
             cognitoUser.signOut();         
-            console.log("hello")
               window.location.href = "index.html";
         };
       }
