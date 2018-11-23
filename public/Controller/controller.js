@@ -20,7 +20,6 @@ function checkGuess(alphaId) {
                 wordSize2--;
                 defaultScore++;
                 updateScore(defaultScore);
-                localStorage.setItem("saveScore", defaultScore);
             }
         }
         document.getElementById("points").innerHTML = defaultScore;
@@ -28,7 +27,6 @@ function checkGuess(alphaId) {
         defaultGuessLimit--;
         defaultScore--;
         updateScore(defaultScore);
-        localStorage.setItem("saveScore", defaultScore);
         document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
         document.getElementById("points").innerHTML = defaultScore;
 
