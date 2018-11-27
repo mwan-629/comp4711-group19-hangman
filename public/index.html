@@ -19,7 +19,8 @@
   <body>
         <nav class="navbar navbar-dark bg-dark">
                 <p class="text-right"><a href="#" id="login-popup-btn" class="btn btn-primary btn-lg" role="button" >Login</a></p>
-            </nav>
+
+        </nav>
         <div class="container">
                 <div class="row" align="center">
                     <img class="img-circle"  id="img_logo" src="View/images/hang-man-icon.png">
@@ -54,6 +55,10 @@
                                 <div class="modal-footer">
                                     <div>
                                         <button type="submit" onclick="register_login()" class="btn btn-primary btn-lg btn-block">Login</button>
+                                        <!-- added redirect button to main page -->
+                                        <a href="https://rankup.pro/login?redirect=comp4711-groupproject.firebaseapp.com">
+                                            <input type="button" class="btn btn-primary btn-lg btn-block" style="margin-top: 0.2em" value="Login through RankUp" />
+                                        </a>
                                     </div>
                                     <div>
                                         <!-- <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button> -->
