@@ -49,12 +49,26 @@ var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 var cognitoUser = userPool.getCurrentUser();
 var userInfo = {};
 function getUserInfo() {
-    let cognitoid = cognitoUser.username;
-    console.log(cognitoUser.username)
+    let json = {}
+    if (location.search !== "") {
+        const params = new URLSearchParams(location.search)
+        if (params.has("rankUpUser")) {
+            let userJson = JSON.parse(params.get("rankUpUser"))
+            json = {
+                "id": userJson.sub,
+            };
+            localStorage.setItem("rankUpUser", JSON.stringify(userJson))
+            console.log(json)
+        }
+    } else if (cognitoUser !== null){
+        let cognitoid = cognitoUser.username;    
+        json = {
+            "id": cognitoid,
+        };
+    } else {
+        window.location.href = "index.html";
+    }
 
-    var json = {
-        "id": cognitoid,
-    };
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user/info', true);
