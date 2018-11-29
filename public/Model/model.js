@@ -57,6 +57,7 @@ function getUserInfo() {
             json = {
                 "id": userJson.sub,
             };
+            localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json)
         }
     } else if (cognitoUser !== null){
