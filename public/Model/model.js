@@ -50,23 +50,22 @@ var cognitoUser = userPool.getCurrentUser();
 var userInfo = {};
 function getUserInfo() {
     let json = {}
-    if (location.search !== null) {
+    if (location.search !== "") {
         const params = new URLSearchParams(location.search)
         if (params.has("rankUpUser")) {
-            console.log("test")
             let userJson = JSON.parse(params.get("rankUpUser"))
             json = {
                 "id": userJson.sub,
             };
             console.log(json)
         }
-    } else {
-        let cognitoid = cognitoUser.username;
-        console.log(cognitoUser.username)
-    
+    } else if (cognitoUser !== null){
+        let cognitoid = cognitoUser.username;    
         json = {
             "id": cognitoid,
         };
+    } else {
+        window.location.href = "index.html";
     }
 
 
