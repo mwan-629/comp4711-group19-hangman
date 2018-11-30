@@ -60,7 +60,7 @@ function getUserInfo() {
                 "id": userJson.sub,
             };
             createUserRankUp(userJson)
-
+            setUserInfo
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json)
         }
@@ -101,6 +101,7 @@ function createUserRankUp(userdata){
         xhttp.setRequestHeader("Content-Type", "application/json")
         var data = {'token': userdata.sub,
                     'userid': userdata.given_name,
+                    'rankupid':userdata.sub
                     }
         xhttp.send(JSON.stringify(data));
     
