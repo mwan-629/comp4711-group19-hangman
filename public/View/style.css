@@ -29,7 +29,7 @@
 }
 
 body {
-  width: 90%;
+  width: 100%;
   padding: 1em 2em;
 }
 
@@ -86,4 +86,50 @@ body {
 #mytable,td{
   border:2px solid #6B8E23;
   padding: 10px;
+}
+
+.img-container{
+  display: block;
+ margin-left: auto;
+ margin-right: auto;
+ width: 50%;
+}
+
+img#img_logo1{
+margin-left: auto;
+margin-right: auto;
+display: block;
+}
+
+.modal-header#img_logo{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+html, body
+{
+    margin: 0px; padding: 0px
+}
+
+.container {
+  align:center;
+}
+
+#login-popup-btn{
+  margin-right: 30px;
+  margin-top: 10px;
+}
+
+.gamecontainer{
+  margin: 20px;
+}
+
+.rankingboard{
+  text-align:center;
+}
+
+table {
+  margin-left:auto;
+  margin-right:auto;
 }
