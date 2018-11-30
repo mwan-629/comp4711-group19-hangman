@@ -18,8 +18,10 @@
 
   <body>
     <div class="gamecontainer">
-      <button id="btnLogout" class="btn btn-action" onclick="btnLogout()">Log Out</button><br>
-
+      <div id="navHangman">
+      <button id="btnLogout" class="btn btn-action" onclick="btnLogout()">Log Out</button>
+      <div id="currentUser">Username</div>
+    </div>
     <h1>Hangman Game<br>Guess the word!</h1>
 
     <h2>Number of guesses left: </h2>
@@ -61,8 +63,10 @@
     <script>
       // gets the current user's info and display score
       getUserInfo();
+
     </script>
   </body>
   <script>post_toDB();
+        updateUser();
   </script>
 </html>

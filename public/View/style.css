@@ -133,3 +133,9 @@ table {
   margin-left:auto;
   margin-right:auto;
 }
+
+#currentUser{
+  float:right;
+  text-transform: capitalize;
+  font-weight: bold;
+}

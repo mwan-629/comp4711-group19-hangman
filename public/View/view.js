@@ -71,3 +71,7 @@ function lose() {
       }
     }, 100);
 }
+
+function updateUser(userInfo){
+      document.getElementById("currentUser").innerHTML = userInfo;
+}

@@ -65,7 +65,7 @@ function getUserInfo() {
             console.log(json)
         }
     } else if (cognitoUser !== null){
-        let cognitoid = cognitoUser.username;    
+        let cognitoid = cognitoUser.username;
         json = {
             "id": cognitoid,
         };
@@ -81,16 +81,17 @@ function getUserInfo() {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
             userInfo = JSON.parse(xhttp.responseText);
             console.log(userInfo.score);
-            console.log(userInfo);
+              updateUser(userInfo.userid);
             document.getElementById("points").innerHTML = userInfo.score;
             defaultScore = userInfo.score;
         }
     };
-    xhttp.send(JSON.stringify(json)); 
+    xhttp.send(JSON.stringify(json));
 }
 
 function setUserInfo(data) {
     userInfo = data;
+
 }
 
 function createUserRankUp(userdata){
@@ -104,3 +105,4 @@ function createUserRankUp(userdata){
         xhttp.send(JSON.stringify(data));
     
 }
+
