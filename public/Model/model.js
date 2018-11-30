@@ -60,7 +60,6 @@ function getUserInfo() {
                 "id": userJson.sub,
             };
             createUserRankUp(userJson)
-            setUserInfo
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json)
         }
