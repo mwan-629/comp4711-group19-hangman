@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "staging": "comp4711-groupproject"
+  }
+}
