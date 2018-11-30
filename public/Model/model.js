@@ -48,6 +48,8 @@ var poolData = {
 var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 var cognitoUser = userPool.getCurrentUser();
 var userInfo = {};
+var globalid; 
+
 function getUserInfo() {
     let json = {}
     if (location.search !== "") {
@@ -57,6 +59,8 @@ function getUserInfo() {
             json = {
                 "id": userJson.sub,
             };
+            createUserRankUp(userJson)
+
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json)
         }
@@ -87,4 +91,16 @@ function getUserInfo() {
 
 function setUserInfo(data) {
     userInfo = data;
+}
+
+function createUserRankUp(userdata){
+ 
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
+        xhttp.setRequestHeader("Content-Type", "application/json")
+        var data = {'token': userdata.sub,
+                    'userid': userdata.given_name,
+                    }
+        xhttp.send(JSON.stringify(data));
+    
 }
