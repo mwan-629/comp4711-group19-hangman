@@ -59,7 +59,8 @@ function getUserInfo() {
             json = {
                 "id": userJson.sub,
             };
-            createUserRankUp(userJson,json)
+            getExistingUserInfo(json,userJson)
+            // createUserRankUp(userJson,json)
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json);
         }
@@ -75,17 +76,21 @@ function getUserInfo() {
 
 }
 
-function getExistingUserInfo(json) {
+function getExistingUserInfo(json, userJson) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user/info', true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
-            userInfo = JSON.parse(xhttp.responseText);
-            console.log(userInfo.score);
-              updateUser(userInfo.userid);
-            document.getElementById("points").innerHTML = userInfo.score;
-            defaultScore = userInfo.score;
+            if (xhttp.responseText === null) {
+                createUserRankUp(userJson,json)
+            } else {
+                userInfo = JSON.parse(xhttp.responseText);
+                console.log(userInfo.score);
+                  updateUser(userInfo.userid);
+                document.getElementById("points").innerHTML = userInfo.score;
+                defaultScore = userInfo.score;
+            }
         }
     };
     xhttp.send(JSON.stringify(json));
