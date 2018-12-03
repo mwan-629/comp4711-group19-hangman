@@ -52,7 +52,7 @@ function parseData(value) {
     }
 
     unsortedrank.sort(function(a, b){
-        return a.ranknum - b.ranknum;
+        return b.ranknum - a.ranknum;
     });
 
 
