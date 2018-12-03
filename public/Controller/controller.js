@@ -22,8 +22,8 @@ function checkGuess(alphaId) {
                 
             }
         }
-        updateScore(defaultScore);
         console.log(defaultScore);
+        updateScore(defaultScore);
         document.getElementById("points").innerHTML = defaultScore;
     } else {
         defaultGuessLimit--;
