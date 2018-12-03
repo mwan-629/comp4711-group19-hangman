@@ -84,6 +84,7 @@ function getExistingUserInfo(json, userJson) {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
             if (xhttp.responseText === null) {
                 createUserRankUp(userJson,json)
+                console.log(xhttp.responseText);
             } else {
                 userInfo = JSON.parse(xhttp.responseText);
                 console.log(userInfo.score);
