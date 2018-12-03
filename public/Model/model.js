@@ -97,7 +97,8 @@ function setUserInfo(data) {
 }
 
 function createUserRankUp(userdata,json){
- 
+        getExistingUserInfo(userdata.sub);
+        
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
         xhttp.setRequestHeader("Content-Type", "application/json")
