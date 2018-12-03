@@ -61,19 +61,17 @@ function getUserInfo() {
             };
             createUserRankUp(userJson)
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
-            console.log(json)
-            return;
+            console.log(json);
         }
     } else if (cognitoUser !== null){
         let cognitoid = cognitoUser.username;
         json = {
             "id": cognitoid,
         };
+        getExistingUserInfo();
     } else {
         window.location.href = "index.html";
     }
-
-    getExistingUserInfo();
 
 }
 
