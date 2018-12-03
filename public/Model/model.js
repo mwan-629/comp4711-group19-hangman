@@ -83,7 +83,7 @@ function getExistingUserInfo(json, userJson) {
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
             console.log(xhttp.responseText);
-            if (xhttp.responseText == "undefined") {
+            if (xhttp.responseText === "null") {
                 createUserRankUp(userJson,json)
                 
             } else {
