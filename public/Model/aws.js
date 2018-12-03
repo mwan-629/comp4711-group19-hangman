@@ -114,6 +114,9 @@ function submit_login_btn() {
             cognitoUser.signOut();
               window.location.href = "index.html";
         };
+	   
+	   console.log(localStorage.getItem("rankUpUser"));
+
 	   if (localStorage.getItem("rankUpUser") != null){
 			storage.removeItem("rankUpUser");
 			window.location.href = "index.html";
