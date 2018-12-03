@@ -62,6 +62,7 @@ function getUserInfo() {
             createUserRankUp(userJson)
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json)
+            return;
         }
     } else if (cognitoUser !== null){
         let cognitoid = cognitoUser.username;
@@ -72,7 +73,11 @@ function getUserInfo() {
         window.location.href = "index.html";
     }
 
+    getExistingUserInfo();
 
+}
+
+function getExistingUserInfo() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user/info', true);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -98,6 +103,7 @@ function createUserRankUp(userdata){
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
         xhttp.setRequestHeader("Content-Type", "application/json")
+        xhttp.onreadystatechange = getExistingUserInfo();
         var data = {'token': userdata.sub,
                     'userid': userdata.given_name,
                     'rankupid':userdata.sub
