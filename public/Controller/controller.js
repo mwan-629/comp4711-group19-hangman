@@ -19,9 +19,10 @@ function checkGuess(alphaId) {
                 replace(alphaId, temp);
                 wordSize2--;
                 defaultScore++;
-                updateScore(defaultScore);
+                
             }
         }
+        updateScore(defaultScore);
         document.getElementById("points").innerHTML = defaultScore;
     } else {
         defaultGuessLimit--;
