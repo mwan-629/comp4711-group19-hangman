@@ -59,7 +59,7 @@ function getUserInfo() {
             json = {
                 "id": userJson.sub,
             };
-            createUserRankUp(userJson)
+            createUserRankUp(userJson,json)
             localStorage.setItem("rankUpUser", JSON.stringify(userJson))
             console.log(json);
         }
@@ -68,14 +68,14 @@ function getUserInfo() {
         json = {
             "id": cognitoid,
         };
-        getExistingUserInfo();
+        getExistingUserInfo(json);
     } else {
         window.location.href = "index.html";
     }
 
 }
 
-function getExistingUserInfo() {
+function getExistingUserInfo(json) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user/info', true);
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -96,12 +96,12 @@ function setUserInfo(data) {
 
 }
 
-function createUserRankUp(userdata){
+function createUserRankUp(userdata,json){
  
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
         xhttp.setRequestHeader("Content-Type", "application/json")
-        xhttp.onreadystatechange = getExistingUserInfo();
+        xhttp.onreadystatechange = getExistingUserInfo(json);
         var data = {'token': userdata.sub,
                     'userid': userdata.given_name,
                     'rankupid':userdata.sub
