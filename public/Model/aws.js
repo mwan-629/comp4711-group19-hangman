@@ -118,7 +118,7 @@ function submit_login_btn() {
 	   console.log(localStorage.getItem("rankUpUser"));
 
 	   if (localStorage.getItem("rankUpUser") != null){
-			storage.removeItem("rankUpUser");
+			localStorage.removeItem("rankUpUser");
 			window.location.href = "index.html";
 		}
 	   }
