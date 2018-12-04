@@ -52,8 +52,8 @@ var globalid;
 
 function getUserInfo() {
     let json = {}
-    if (location.search !== "") {
-        const params = new URLSearchParams(location.search)
+    const params = new URLSearchParams(location.search);
+    if (location.search !== "" && params.get("rankUpUser") !== "null") {
         if (params.has("rankUpUser")) {
             let userJson = JSON.parse(params.get("rankUpUser"))
             json = {
