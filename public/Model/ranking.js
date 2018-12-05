@@ -28,7 +28,14 @@ function getDataAndRank(){
 
   getDataAndRank();
 
-  var tbl=$("<table/>").attr("id","mytable");
+  var tbl=$(`<table class='table table-striped'>    
+  <thead>
+  <tr>
+    <th class="text-center">Rank</th>
+    <th class="text-center">Display Name</th>
+    <th class="text-center">Score</th>
+  </tr>
+</thead></table>`).attr("id","mytable");
   $("#rankingBoard").append(tbl);
 
   function getDB() {
