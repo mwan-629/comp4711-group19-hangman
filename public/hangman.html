@@ -1,6 +1,6 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="View/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="View/style.css"> -->
     <script src="config.js"></script>
     <!--Add jquery library-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -13,16 +13,25 @@
             <!-- //<script src="aws-sdk-2.6.10.js"></script>  -->
 
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="View/style.css">
     <title>Hangman Game</title>
   </head>
 
   <body>
+      <div class="row">
+          <nav class="navbar">
+              <div class="col-sm-6">
+                  <h1 class="header-title">Hangman</h1>
+              </div>
+              <div class="col-sm-6">
+                  <button id="btnLogout" class="btn btn-default btn-lg" onclick="btnLogout()">Log Out</button>
+                  <div id="currentUser" >Username</div>
+              </div>
+          </nav>
+      </div>
     <div class="gamecontainer">
-      <div id="navHangman">
-      <button id="btnLogout" class="btn btn-action" onclick="btnLogout()">Log Out</button>
-      <div id="currentUser">Username</div>
-    </div>
-    <h1>Hangman Game<br>Guess the word!</h1>
+    <h1>Guess the word!</h1>
 
     <h2>Number of guesses left: </h2>
 
@@ -41,10 +50,8 @@
 
     <div id="alphaButtons"></div>
     <br>
-
-    <p>Want to reset?</p>
-    <div id="resetButton"></div>
-    <br>
+    <!-- <div id="resetButton"></div> -->
+    <button id="ranking" class="btn btn-default hide" onclick="reset()">Reset</button>
     <button id="ranking" class="btn btn-info hide" onclick="document.location.href='ranking.html';">Ranking Board</button>
 
     <!-- The popup message -->

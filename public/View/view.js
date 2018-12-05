@@ -23,9 +23,9 @@ for (i = 0; i < wordSize; i++) {
 }
 
 //Displays the reset button
-resetBtn.appendChild(btnText);
-document.getElementById("resetButton").appendChild(resetBtn);
-resetBtn.onclick = function() {reset();};
+// resetBtn.appendChild(btnText);
+// document.getElementById("resetButton").appendChild(resetBtn);
+// resetBtn.onclick = function() {reset();};
 
 //Displays the limit
 document.getElementById("numOfGuess").innerHTML = defaultGuessLimit;
