@@ -5,8 +5,8 @@ window._config = {
     Region: 'us-west-2'
     }
 };
-// var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-// var userData = {
+// let userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+// let userData = {
 //     Username : '...', // your username here
 //     Pool : userPool
 // };

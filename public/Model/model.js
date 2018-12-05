@@ -1,7 +1,7 @@
 //Model: Stores data, objects, updates the view
-var alphabets = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var wordList = ["tattoo","electricity","school","homework","hello","world","chicken","pizza","apple","microsoft"];
-var definitionList = ["a form of body modification where a design is made by inserting ink",
+let alphabets = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+let wordList = ["tattoo","electricity","school","homework","hello","world","chicken","pizza","apple","microsoft"];
+let definitionList = ["a form of body modification where a design is made by inserting ink",
                       "is the set of physical phenomena associated with the presence and motion of electric charge",
                       "an institution for educating children",
                       "schoolwork assigned to be done outside the classroom",
@@ -13,36 +13,35 @@ var definitionList = ["a form of body modification where a design is made by ins
                       "computer software company, founded 1975"];
 
 //Guessing word
-var randomNum = Math.floor(Math.random() * wordList.length);
-var generateWord = wordList[randomNum];
-var guessWord = generateWord.split(''); //Splits the word into characters
-console.log(guessWord);
-var wordSize = guessWord.length;
-var wordSize2 = wordSize;
-var storeId = new Array(wordSize);
+let randomNum = Math.floor(Math.random() * wordList.length);
+let generateWord = wordList[randomNum];
+let guessWord = generateWord.split(''); //Splits the word into characters
+let wordSize = guessWord.length;
+let wordSize2 = wordSize;
+let storeId = new Array(wordSize);
 //Definition
-var wordDefinition = definitionList[randomNum].toString();
-var getDef = document.createTextNode(wordDefinition);
+let wordDefinition = definitionList[randomNum].toString();
+let getDef = document.createTextNode(wordDefinition);
 //User guess limit
-var defaultGuessLimit = 7;
+let defaultGuessLimit = 7;
 //User score
-var defaultScore = 0;
+let defaultScore = 0;
 //Popup message
-var modal = document.getElementById('myModal');
-var span = document.getElementsByClassName("close")[0];
-var popupMsg = document.getElementById("popup_msg");
+let modal = document.getElementById('myModal');
+let span = document.getElementsByClassName("close")[0];
+let popupMsg = document.getElementById("popup_msg");
 //Reset button
-var resetBtn = document.createElement("button");
-var btnText = document.createTextNode("Play Again?");
+let resetBtn = document.createElement("button");
+let btnText = document.createTextNode("Play Again?");
 
-var poolData = {
+let loginPoolData = {
     UserPoolId : _config.cognito.userPoolId, // Your user pool id here
     ClientId : _config.cognito.clientId, // Your client id here
 };
-var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-var cognitoUser = userPool.getCurrentUser();
-var userInfo = {};
-var globalid; 
+let userPool = new AmazonCognitoIdentity.CognitoUserPool(loginPoolData);
+let cognitoUser = userPool.getCurrentUser();
+let userInfo = {};
+let globalid; 
 
 function getUserInfo() {
     let json = {}
@@ -71,18 +70,15 @@ function getUserInfo() {
 }
 
 function getExistingUserInfo(json, userJson) {
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user/info', true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == XMLHttpRequest.DONE) {
-            console.log(xhttp.responseText);
             if (xhttp.responseText === "null") {
                 createUserRankUp(userJson,json)
-                
             } else {
                 userInfo = JSON.parse(xhttp.responseText);
-                console.log(userInfo.score);
                   updateUser(userInfo.userid);
                 document.getElementById("points").innerHTML = userInfo.score;
                 defaultScore = userInfo.score;
@@ -100,11 +96,11 @@ function setUserInfo(data) {
 function createUserRankUp(userdata,json){
         // getExistingUserInfo(userdata.sub);
         
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
         xhttp.setRequestHeader("Content-Type", "application/json")
         xhttp.onreadystatechange = getExistingUserInfo(json);
-        var data = {'token': userdata.sub,
+        let data = {'token': userdata.sub,
                     'userid': userdata.given_name,
                     'rankupid':userdata.sub
                     }
