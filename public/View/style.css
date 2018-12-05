@@ -112,7 +112,7 @@ html, body
 }
 
 .container {
-  align:center;
+  text-align:center;
 }
 
 #login-popup-btn{
@@ -142,10 +142,10 @@ table {
 .header-title {
     margin-left: 50px;
     color: #ecf0f1;
+    font-size: 36px;
 }
 
 #currentUser {
-  /* text-align: right; */
   color: #ecf0f1;
   margin-right:20px;
   margin-top: 12px;
@@ -154,7 +154,6 @@ table {
 .navbar {
   background-color: #337ab7;
   border-color: #337ab7;
-  /* color: #ecf0f1; */
   margin-bottom: 30px;
   width: 100%;
 }
