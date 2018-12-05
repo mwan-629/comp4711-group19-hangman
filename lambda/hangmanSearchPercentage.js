@@ -1,7 +1,7 @@
-var AWS = require("aws-sdk");
+let AWS = require("aws-sdk");
 
-var dynamodb = new AWS.DynamoDB();
-var docClient = new AWS.DynamoDB.DocumentClient();
+let dynamodb = new AWS.DynamoDB();
+let docClient = new AWS.DynamoDB.DocumentClient();
 
 
 exports.handler = function(event, context, callback) {
@@ -9,9 +9,9 @@ exports.handler = function(event, context, callback) {
         callback(null, JSON.parse( JSON.stringify({"invalid Authorization": 0}, null, 2)));
     }    
     console.log(event)
-    var json = event;
+    let json = event;
     
-    var params = {
+    let params = {
         TableName: "hangmandb"
     };
     
@@ -21,7 +21,7 @@ exports.handler = function(event, context, callback) {
         if (err) {
             console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
         } else {
-            var json = [];
+            let json = [];
             if (event['body-json']['comparator'] === ">=" && event['body-json']['percentage'] > 0) {
                 for(let i=0;i<data['Count'];i++) {
                     if (Math.round(data['Items'][i]['ranknum']/data['Count']*100) >= event['body-json']['percentage']

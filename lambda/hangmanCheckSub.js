@@ -1,10 +1,10 @@
-var AWS = require("aws-sdk");
-var dynamodb = new AWS.DynamoDB();
-var docClient = new AWS.DynamoDB.DocumentClient();
+let AWS = require("aws-sdk");
+let dynamodb = new AWS.DynamoDB();
+let docClient = new AWS.DynamoDB.DocumentClient();
 exports.handler = (event, context, callback) => {
     console.log(JSON.stringify(event))
    // TODO implement
-   var params = {
+   let params = {
        TableName: "hangmandb",
        Key:{
            "id": event.params.header.token

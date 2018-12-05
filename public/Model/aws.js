@@ -1,8 +1,8 @@
-var username;
-var password;
-var email;
-var poolData;
-var identity;
+let username;
+let password;
+let email;
+let poolData;
+let identity;
 
 //Register Function
 function submit_login_btn() {
@@ -17,22 +17,22 @@ function submit_login_btn() {
         };
 
     //create new obj with poolData
-    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-    var attributeList = [];
+    let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    let attributeList = [];
 
-    var dataEmail = {
+    let dataEmail = {
         Name : 'email',
         Value : email, //get from form field
     };
 
-    var dataName = {
+    let dataName = {
         Name : 'name',
         Value : name, //get from form field
     };
 
     //create new obj for email, name
-    var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
-    var attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(dataName);
+    let attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+    let attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(dataName);
 
 
     attributeList.push(attributeEmail);
@@ -55,10 +55,10 @@ function submit_login_btn() {
 
     //Post to dynamoDB: userid, cognitoid
     function post_toDB(id,cognitoid){
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/user', true);
         xhttp.setRequestHeader("Content-Type", "application/json")
-        var data = {'token': cognitoid,
+        let data = {'token': cognitoid,
                     'userid': id,
                     'cognitoid': cognitoid}
         xhttp.send(JSON.stringify(data));
@@ -67,30 +67,30 @@ function submit_login_btn() {
     //Login function
     function register_login() {
 
-        var authenticationData = {
+        let authenticationData = {
             Email : document.getElementById("login_username").value,
             Password : document.getElementById("login_password").value,
         };
 
-        var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+        let authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
         identity = authenticationDetails;
-        var poolData = {
+        let poolData = {
             UserPoolId : _config.cognito.userPoolId, // Your user pool id here
             ClientId : _config.cognito.clientId, // Your client id here
         };
 
-        var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+        let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-        var userData = {
+        let userData = {
             Username : document.getElementById("login_username").value,
             Pool : userPool,
         };
 
-        var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+        let cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 
         cognitoUser.authenticateUser(authenticationDetails, {
             onSuccess: function (result) {
-                var accessToken = result.getAccessToken().getJwtToken();
+                let accessToken = result.getAccessToken().getJwtToken();
                 console.log(accessToken);
                 window.location.href = "hangman.html";
             },
@@ -100,15 +100,14 @@ function submit_login_btn() {
         });
       }
 
-      console.log(identity);
 
       function btnLogout(){
-        var poolData = {
+        let poolData = {
             UserPoolId : _config.cognito.userPoolId, // Your user pool id here
             ClientId : _config.cognito.clientId, // Your client id here
         };
-        var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-        var cognitoUser = userPool.getCurrentUser();
+        let userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+        let cognitoUser = userPool.getCurrentUser();
 
         if (cognitoUser != null) {
             cognitoUser.signOut();

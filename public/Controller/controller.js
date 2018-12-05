@@ -13,8 +13,8 @@ function replace(letter, id) {
 function checkGuess(alphaId) {
     if (guessWord.includes(alphaId)) {
         for(i=0; i < wordSize; i++) {
-            var temp = storeId[i];
-            var tester = alphaId+i;
+            let temp = storeId[i];
+            let tester = alphaId+i;
             if (temp == tester) {
                 replace(alphaId, temp);
                 wordSize2--;
@@ -46,12 +46,12 @@ function checkGuess(alphaId) {
 }
 
 function updateScore(defaultScore) {
-    var json = {
+    let json = {
         "token": userInfo.token,
         "score": defaultScore
     };
 
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/updatescore', true);
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.onreadystatechange = updateRankings();
@@ -60,7 +60,7 @@ function updateScore(defaultScore) {
 }
 
 function updateRankings() {
-    var xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.open("POST", 'https://cg3adfllh2.execute-api.us-west-2.amazonaws.com/development/updaterankings', true);
     xhttp.setRequestHeader("Content-Type", "application/json")
     xhttp.send();

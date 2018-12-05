@@ -1,15 +1,15 @@
 
-var AWS = require("aws-sdk");
+let AWS = require("aws-sdk");
 
-var dynamodb = new AWS.DynamoDB();
-var docClient = new AWS.DynamoDB.DocumentClient();
+let dynamodb = new AWS.DynamoDB();
+let docClient = new AWS.DynamoDB.DocumentClient();
 
 
 exports.handler = function(event, context, callback) {
     console.log(event)
-    var json = event;
+    let json = event;
     
-    var params = {
+    let params = {
         TableName: "hangmandb"
     };
     
@@ -26,7 +26,7 @@ exports.handler = function(event, context, callback) {
         console.log(JSON.stringify(json, null, 2));
         
         for (let i = 0; i < json.length; i++) {
-                var params = {
+                let params = {
                     TableName: "hangmandb",
                     Key:{
                        "token": json[i].token,

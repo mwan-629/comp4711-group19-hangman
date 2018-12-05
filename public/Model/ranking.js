@@ -1,12 +1,12 @@
 rankings = document.getElementById("rankingBoard");
-var db;
+let db;
 //get database data as json
 function getDataAndRank(){
 
-      var array = [];
+      let array = [];
 
       //push database data to array
-      for (var key in db) {
+      for (let key in db) {
           array.push(db[key]);
       }
 
@@ -14,21 +14,19 @@ function getDataAndRank(){
           return b.score - a.score;
       });
 
-      var rank = 1;
+      let rank = 1;
 
-      for (var i = 0; i < array.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         if (i > 0 && array[i].score < array[i - 1].score) {
             rank++;
         }
           array[i].rank = rank;
       }
-      console.log(array);
-
   }
 
   getDataAndRank();
 
-  var tbl=$(`<table class='table table-striped'>    
+  let tbl=$(`<table class='table table-striped'>    
   <thead>
   <tr>
     <th class="text-center">Rank</th>
@@ -39,11 +37,10 @@ function getDataAndRank(){
   $("#rankingBoard").append(tbl);
 
   function getDB() {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             db = xhr.responseText;
-            console.log(db);
             db = JSON.parse(db);
             parseData(db);
 
@@ -64,12 +61,11 @@ function parseData(value) {
 
 
     for(let i=0; i< unsortedrank.length; i++) {
-        var tr="<tr>";
-        var td1="<td>"+unsortedrank[i]["ranknum"]+"</td>";
-        var td2="<td>"+unsortedrank[i]["userid"]+"</td>";
-        var td3="<td>"+unsortedrank[i]["score"]+"</td><tr>";
+        let tr="<tr>";
+        let td1="<td>"+unsortedrank[i]["ranknum"]+"</td>";
+        let td2="<td>"+unsortedrank[i]["userid"]+"</td>";
+        let td3="<td>"+unsortedrank[i]["score"]+"</td><tr>";
 
         $("#mytable").append(tr+td1+td2+td3);
     }
-    console.log(unsortedrank)
 }
